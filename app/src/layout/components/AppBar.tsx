@@ -1,11 +1,13 @@
 import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem } from '@mui/material';
 import { ArrowDropDown as ArrowDropDownIcon } from '@mui/icons-material';
 import { MouseEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function AppBarComponent() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
 
-  function handleMenuOpen (event: MouseEvent<HTMLElement>) {
+  function handleMenuOpen(event: MouseEvent<HTMLElement>) {
     setAnchorEl(event.currentTarget);
   };
 
@@ -13,9 +15,12 @@ export default function AppBarComponent() {
     setAnchorEl(null);
   };
 
-  function handleLogout() {
-    console.log('Logout clicked');
-    handleMenuClose();
+  const handleLogout = () => {
+    // Remove token from local storage
+    localStorage.removeItem('authToken');
+
+    // Navigate to login page
+    navigate('/login');
   };
 
   return (

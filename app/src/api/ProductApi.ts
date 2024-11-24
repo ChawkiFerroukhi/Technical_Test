@@ -1,13 +1,12 @@
-import axios from 'axios';
 import { Product } from '../entities/Product';
-import { API_BASE_URL } from '../utils/config';
+import apiClient from './ApiClient';
 
 /**
  * Fetch all products from the API.
  */
 export async function getProducts(): Promise<Product[]> {
     try {
-        const response = await axios.get(`${API_BASE_URL}/products`);
+        const response = await apiClient.get('/products');
         return response.data;
     } catch (error) {
         console.error('Error fetching products:', error);
@@ -20,7 +19,7 @@ export async function getProducts(): Promise<Product[]> {
  */
 export async function getProductById(id: string): Promise<Product> {
     try {
-        const response = await axios.get(`${API_BASE_URL}/products/${id}`);
+        const response = await apiClient.get(`/products/${id}`);
         return response.data;
     } catch (error) {
         console.error(`Error fetching product with ID ${id}:`, error);
@@ -33,7 +32,7 @@ export async function getProductById(id: string): Promise<Product> {
  */
 export async function createProduct(product: Omit<Product, '_id'>): Promise<Product> {
     try {
-        const response = await axios.post(`${API_BASE_URL}/products`, product);
+        const response = await apiClient.post(`/products`, product);
         return response.data;
     } catch (error) {
         console.error('Error creating product:', error);
@@ -46,7 +45,7 @@ export async function createProduct(product: Omit<Product, '_id'>): Promise<Prod
  */
 export async function editProduct(id: string, product: Partial<Product>): Promise<Product> {
     try {
-        const response = await axios.put(`${API_BASE_URL}/products/${id}`, product);
+        const response = await apiClient.put(`/products/${id}`, product);
         return response.data;
     } catch (error) {
         console.error(`Error updating product with ID ${id}:`, error);
@@ -59,7 +58,7 @@ export async function editProduct(id: string, product: Partial<Product>): Promis
  */
 export async function deleteProduct(id: string): Promise<boolean> {
     try {
-        const response = await axios.delete(`${API_BASE_URL}/products/${id}`);
+        const response = await apiClient.delete(`/products/${id}`);
         if (response.status === 204) {
             return true;
         }

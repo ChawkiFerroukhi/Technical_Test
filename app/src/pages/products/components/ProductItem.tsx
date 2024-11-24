@@ -28,11 +28,12 @@ export default function ProductItem({ product, viewType }: ProductItemProps) {
         const productId = product._id;
 
         try {
-            dispatch(removeProduct(productId));
 
             const isDeleted = await deleteProduct(productId);
             if (!isDeleted) {
                 throw new Error('Failed to delete product');
+            } else {
+                dispatch(removeProduct(productId));
             }
         } catch (error) {
             console.error('Error deleting product:', error);
