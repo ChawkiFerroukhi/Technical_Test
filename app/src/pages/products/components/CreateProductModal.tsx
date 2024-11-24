@@ -114,8 +114,9 @@ export default function CreateProductModal({ open, onClose, initialProductData }
 					type="number"
 					variant="outlined"
 					value={rating}
-					onChange={(e) => setRating(Number(e.target.value))}
+					onChange={(e) => setRating(Math.max(0, Math.min(Number(e.target.value), 5)))} // Limit to range 0-5
 					sx={{ marginBottom: 2 }}
+					inputProps={{ max: 5 }}
 				/>
 				<TextField
 					label="Warranty (Years)"
@@ -123,8 +124,9 @@ export default function CreateProductModal({ open, onClose, initialProductData }
 					type="number"
 					variant="outlined"
 					value={warranty}
-					onChange={(e) => setWarranty(Number(e.target.value))}
+					onChange={(e) => setWarranty(Math.max(0, Math.min(Number(e.target.value), 5)))} // Limit to range 0-5
 					sx={{ marginBottom: 2 }}
+					inputProps={{ max: 5 }}
 				/>
 				<FormControlLabel
 					control={<Checkbox checked={available} onChange={() => setAvailable(!available)} />}
