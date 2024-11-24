@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
-    "outDir": "./dist",
+    "outDir": "dist",
     "baseUrl": "./src",
     "paths": {
       "*": [
@@ -27,16 +27,7 @@
       "@models/*": [
         "models/*"
       ],
-      "@auth/*": [
-        "auth/*"
-      ]
     },
     "resolveJsonModule": true
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  }
 }
