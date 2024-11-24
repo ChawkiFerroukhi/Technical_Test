@@ -26,6 +26,9 @@
       ],
       "@models/*": [
         "models/*"
+      ],
+      "@auth/*": [
+        "auth/*"
       ]
     },
     "resolveJsonModule": true

@@ -28,9 +28,8 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-Object.values(routers).forEach((router) => {
-  app.use("/api", router);
-});
+app.use("/api", routers.authRouter);  // Register the auth routes properly
+app.use("/api", routers.productRouter);
 
 connectDb();
 
